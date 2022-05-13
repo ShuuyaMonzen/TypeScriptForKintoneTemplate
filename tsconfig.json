@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    // tsコンパイル結果格納先
+    "outDir": "./temp/build/entries/",
+    // ソースマップを有効化
+    "sourceMap": true,
+    // TSはES2015に変換
+    "target": "ES2015",
+    // 厳密モードとして設定
+    "strict": true
+  },
+  "compileOnSave": true,
+  "include": [
+	  "src/js",
+  ],
+  "exclude": []
+}
