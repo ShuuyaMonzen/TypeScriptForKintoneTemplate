@@ -37,4 +37,10 @@ module.exports = {
       '.ts', '.js',
     ],
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    })
+  ]
 }

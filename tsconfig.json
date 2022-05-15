@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    // モジュールの参照先解決の指定
+    "moduleResolution": "node",
     // tsコンパイル結果格納先
     "outDir": "./temp/build/entries/",
     // ソースマップを有効化
