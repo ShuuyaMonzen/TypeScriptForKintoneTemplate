@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/ShuuyaMonzen/TypeScriptForKintoneTemplate#readme",
   "devDependencies": {
+    "@kintone/dts-gen": "^6.0.0",
     "@types/jquery": "^3.5.14",
     "@types/moment": "^2.13.0",
     "glob": "^8.0.2",
@@ -32,6 +33,7 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
+    "@kintone/rest-api-client": "^3.0.0",
     "jquery": "^3.6.0",
     "moment": "^2.29.3"
   }
