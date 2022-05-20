@@ -1,3 +1,4 @@
+/// <reference path="../../../node_modules/kypes/namespaces/index.ts" />
 import * as $ from 'jquery';
 import * as moment from 'moment';
 
