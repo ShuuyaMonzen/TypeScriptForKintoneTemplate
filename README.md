@@ -1,0 +1,2 @@
+# TypeScriptForKintoneTemplate
+kintoneカスタマイズのTypescript開発テンプレート
