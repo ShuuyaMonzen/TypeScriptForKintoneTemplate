@@ -1,5 +1,11 @@
 // KintoneEnviroment型の定義
-export interface IKintoneEnviroment {
+export default interface IKintoneEnviroment {
+    /**
+     * サンプルアプリのアプリID
+     */
     sampleAppId: number;
+    /**
+     * サンプルアプリのAPIトークン
+     */
     sampleApiToken: string;
 }

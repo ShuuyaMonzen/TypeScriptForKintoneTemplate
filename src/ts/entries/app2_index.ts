@@ -1,6 +1,7 @@
 /// <reference path="../../../node_modules/kypes/namespaces/index.ts" />
 import * as $ from 'jquery';
 import * as moment from 'moment';
+//import kintoneEnviroment from '../config/indexKintoneEnviroment';
 
 (() => {
     class appConfig {
@@ -9,6 +10,7 @@ import * as moment from 'moment';
             this.name = name;
             console.log(moment().toDate() + " " + this.name);
             console.log($("body"));
+            //console.log("sampleAppId : " + kintoneEnviroment.sampleAppId);
         }
     }
 

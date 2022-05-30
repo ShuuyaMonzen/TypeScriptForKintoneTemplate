@@ -1,6 +1,8 @@
-import * as interfaceKintoneEnviroment from './interfaceKintoneEnviroment';
+import { injectable } from 'inversify';
+import IKintoneEnviroment from './interfaceKintoneEnviroment';
 
-class kintoneEnviromentDev implements interfaceKintoneEnviroment.IKintoneEnviroment {
+@injectable()
+export default class kintoneEnviromentDevelopment implements IKintoneEnviroment {
     public constructor(){
         this.sampleAppId = 200;
         this.sampleApiToken = "aaa";
@@ -8,6 +10,3 @@ class kintoneEnviromentDev implements interfaceKintoneEnviroment.IKintoneEnvirom
     sampleAppId: number;
     sampleApiToken: string;
 }
-
-const kintoneEnv = new kintoneEnviromentDev();
-export default kintoneEnv;

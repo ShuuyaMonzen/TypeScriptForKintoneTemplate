@@ -33,7 +33,12 @@ module.exports = {
   },
   plugins: [
     new webpack.EnvironmentPlugin(["NODE_ENV"]),
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        configFile: path.resolve(__dirname, "./tsconfig.json")
+      },
+      async: false,
+    }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
