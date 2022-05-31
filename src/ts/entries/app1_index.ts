@@ -20,5 +20,6 @@ import * as moment from 'moment';
         }
     }
 
+    // テストコメント
     const appConfigValue = new appConfig('アプリ1');
 })();

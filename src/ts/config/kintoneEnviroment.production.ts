@@ -5,7 +5,7 @@ import IKintoneEnviroment from './interfaceKintoneEnviroment';
 export default class kintoneEnviromentProduction implements IKintoneEnviroment {
     public constructor(){
         this.sampleAppId = 400;
-        this.sampleApiToken = "bbb";
+        this.sampleApiToken = "ccc";
     }
     sampleApiToken: string;
     sampleAppId: number;
