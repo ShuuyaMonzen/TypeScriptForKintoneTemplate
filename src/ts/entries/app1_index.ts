@@ -1,4 +1,4 @@
-/// <reference path="../../../node_modules/kypes/namespaces/index.ts" />
+import { kintone } from "kypes/namespaces/kintone";
 import 'reflect-metadata';
 import container from '../diContainer/inversify.config';
 import TYPES from '../diContainer/inversify.types';

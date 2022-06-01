@@ -4,22 +4,22 @@
   "description": "",
   "scripts": {
     "コメント(buildDev) : 開発用ビルド": "",
-    "buildDev": "cross-env NODE_ENV=\"development\" webpack",
-    "コメント(buildStg) : リリース用ビルド": "",
-    "buildStg": "cross-env NODE_ENV=\"staging\" webpack",
+    "buildDev": "cross-env NODE_ENV=\"development\" APP_ENV=\"development\" webpack",
+    "コメント(buildStg) : 検証用ビルド": "",
+    "buildStg": "cross-env NODE_ENV=\"production\" APP_ENV=\"staging\" webpack",
     "コメント(buildPro) : リリース用ビルド": "",
-    "buildPro": "cross-env NODE_ENV=\"production\" webpack"
+    "buildPro": "cross-env NODE_ENV=\"production\" APP_ENV=\"production\" webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShuuyaMonzen/TypeScriptForKintoneTemplate.git"
+    "url": "git+https://github.com/ShuuyaMonzen/typescript-kintone-template.git"
   },
   "author": "MonzenShuuya",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ShuuyaMonzen/TypeScriptForKintoneTemplate/issues"
+    "url": "https://github.com/ShuuyaMonzen/typescript-kintone-template/issues"
   },
-  "homepage": "https://github.com/ShuuyaMonzen/TypeScriptForKintoneTemplate#readme",
+  "homepage": "https://github.com/ShuuyaMonzen/typescript-kintone-template#readme",
   "devDependencies": {
     "@babel/core": "^7.17.10",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
@@ -30,6 +30,7 @@
     "@types/jquery": "^3.5.14",
     "@types/moment": "^2.13.0",
     "babel-loader": "^8.2.5",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "cross-env": "^7.0.3",
     "fork-ts-checker-webpack-plugin": "^7.2.11",
     "glob": "^8.0.2",

@@ -1,6 +1,4 @@
-/* javascript-obfuscator:disable */
-const NODE_ENV = process.env.NODE_ENV;
-/* javascript-obfuscator:enable */
+const APP_ENV = process.env.APP_ENV;
 import { Container } from 'inversify';
 import TYPES from './inversify.types';
 
@@ -10,17 +8,17 @@ import KintoneEnviromentStg from '../config/kintoneEnviroment.staging';
 import KintoneEnviromentPro from '../config/kintoneEnviroment.production';
 
 const container = new Container();
-if (NODE_ENV === 'development') {
+if (APP_ENV === 'development') {
     container
         .bind<IKintoneEnviroment>(TYPES.IKintoneEnviroment)
         .to(KintoneEnviromentDev)
         .inSingletonScope();
-} else if (NODE_ENV === 'staging') {
+} else if (APP_ENV === 'staging') {
     container
         .bind<IKintoneEnviroment>(TYPES.IKintoneEnviroment)
         .to(KintoneEnviromentStg)
         .inSingletonScope();
-} else if (NODE_ENV === 'production') {
+} else if (APP_ENV === 'production') {
     container
         .bind<IKintoneEnviroment>(TYPES.IKintoneEnviroment)
         .to(KintoneEnviromentPro)

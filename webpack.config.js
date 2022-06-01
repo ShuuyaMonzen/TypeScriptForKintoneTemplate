@@ -1,9 +1,9 @@
 const path = require('path');
 const glob = require("glob");
 const webpack = require('webpack');
-// 難読化
+// 難読化モジュール
 const WebpackObfuscator = require('webpack-obfuscator');
-// ts型チェック
+// ts型・構文チェックモジュール
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 //#region バンドル対象を取得する
@@ -19,36 +19,10 @@ glob.sync('**/*.ts', {
 });
 //#endregion
 
-//#region 難読化モジュールのオプション設定
-/**
- * 難読化モジュールのオプション設定
- */
-var WebpackObfuscatorOption = {
-  compact: true,
-  identifierNamesGenerator: 'hexadecimal',
-  log: false,
-  numbersToExpressions: true,
-  renameGlobals: false,
-  simplify: true,
-  splitStrings: true,
-  splitStringsChunkLength: 5,
-  stringArray: true,
-  stringArrayCallsTransform: true,
-  stringArrayEncoding: ['rc4'],
-  stringArrayIndexShift: true,
-  stringArrayRotate: true,
-  stringArrayShuffle: true,
-  stringArrayWrappersCount: 5,
-  stringArrayWrappersChainedCalls: true,    
-  stringArrayWrappersParametersMaxCount: 5,
-  stringArrayWrappersType: 'function',
-  stringArrayThreshold: 1,
-  transformObjectKeys: true,
-  unicodeEscapeSequence: false
-}
-//#endregion
-
 //#region ローダールールのオブジェクトを作成する
+/**
+ * babelローダールール
+ */
 var babelLoaderRule = { 
   test: /\.ts$/,
   exclude: /node_modules/,
@@ -56,32 +30,59 @@ var babelLoaderRule = {
     loader: 'babel-loader'
   }]
 };
+
+/**
+ * 難読化モジュールローダールール
+ */
 var WebpackObfuscatorLoaderRule = {
   test: /\.ts$/,
   exclude: /node_modules/,
   enforce: 'post',
   use: [{
       loader: WebpackObfuscator.loader,
-      options: WebpackObfuscatorOption
+      options: {
+        compact: true,
+        identifierNamesGenerator: 'hexadecimal',
+        log: false,
+        numbersToExpressions: true,
+        renameGlobals: false,
+        selfDefending:true,
+        simplify: true,
+        splitStrings: true,
+        splitStringsChunkLength: 5,
+        stringArray: true,
+        stringArrayCallsTransform: true,
+        stringArrayEncoding: ['rc4'],
+        stringArrayIndexShift: true,
+        stringArrayRotate: true,
+        stringArrayShuffle: true,
+        stringArrayWrappersCount: 5,
+        stringArrayWrappersChainedCalls: true,    
+        stringArrayWrappersParametersMaxCount: 5,
+        stringArrayWrappersType: 'function',
+        stringArrayThreshold: 1,
+        transformObjectKeys: true,
+        unicodeEscapeSequence: false
+      }
   }]
 };
 //#endregion
 
 //#region プラグインのオブジェクトを作成する
 /**
- * 難読化用プラグイン
+ * 環境変数用プラグイン
  */
-var webpackObfuscatorPluginObj = new WebpackObfuscator (WebpackObfuscatorOption, []);
+var environmentPlugin = new webpack.EnvironmentPlugin(["NODE_ENV", "APP_ENV"]);
 
+/**
+ * ts型・構文チェックプラグイン
+ */
 var forkTsCheckerWebpackPlugin = new ForkTsCheckerWebpackPlugin({
   typescript: {
     configFile: path.resolve(__dirname, "./tsconfig.json")
   },
   async: false,
 });
-
-var environmentPlugin = new webpack.EnvironmentPlugin(["NODE_ENV"]);
-
 //#endregion
 
 module.exports = {
@@ -96,27 +97,15 @@ module.exports = {
   // 検証・本番用ビルドではソースマップなし
   devtool: (process.env.NODE_ENV == 'development') ? 'inline-source-map' : undefined,
   target: 'node',
+  // 開発用ビルドでは難読化なし
+  // 検証・本番用ビルドでは難読化あり
   module: {
     rules: (process.env.NODE_ENV == 'development') ? 
     [babelLoaderRule] :
-    [
-      WebpackObfuscatorLoaderRule,
-      babelLoaderRule, 
-    ],
+    [WebpackObfuscatorLoaderRule, babelLoaderRule],
   },
   resolve: {
     extensions: ['.ts', '.js',],
   },
-  // 開発用ビルドでは難読化なし
-  // 検証・本番用ビルドでは難読化あり
-  plugins: (process.env.NODE_ENV == 'development') ? 
-  [
-    environmentPlugin,
-    forkTsCheckerWebpackPlugin,
-  ] :
-  [
-    environmentPlugin,
-    forkTsCheckerWebpackPlugin,
-    //webpackObfuscatorPluginObj
-  ],
+  plugins: [forkTsCheckerWebpackPlugin]
 };
