@@ -23,11 +23,37 @@ glob.sync('**/*.ts', {
 /**
  * babelローダールール
  */
-var babelLoaderRule = { 
+var babelLoaderRule = {
   test: /\.ts$/,
   exclude: /node_modules/,
   use: [{
-    loader: 'babel-loader'
+    loader: 'babel-loader',
+    options: {
+      presets: [
+        [
+          "@babel/preset-env",
+          {
+            "useBuiltIns": "usage",
+            "corejs": 3,
+          },
+        ],
+        "@babel/typescript",
+      ],
+      plugins: [
+        ["@babel/plugin-proposal-decorators", {
+          legacy: true
+        }],
+        ["@babel/proposal-class-properties"],
+
+        // NODE_ENV, APP_ENVの変数を'development'などのビルドオプション文字列に置換
+        ["transform-inline-environment-variables", {
+          "include": [
+            "NODE_ENV",
+            "APP_ENV"
+          ]
+        }]
+      ]
+    }
   }]
 };
 
@@ -39,31 +65,31 @@ var WebpackObfuscatorLoaderRule = {
   exclude: /node_modules/,
   enforce: 'post',
   use: [{
-      loader: WebpackObfuscator.loader,
-      options: {
-        compact: true,
-        identifierNamesGenerator: 'hexadecimal',
-        log: false,
-        numbersToExpressions: true,
-        renameGlobals: false,
-        selfDefending:true,
-        simplify: true,
-        splitStrings: true,
-        splitStringsChunkLength: 5,
-        stringArray: true,
-        stringArrayCallsTransform: true,
-        stringArrayEncoding: ['rc4'],
-        stringArrayIndexShift: true,
-        stringArrayRotate: true,
-        stringArrayShuffle: true,
-        stringArrayWrappersCount: 5,
-        stringArrayWrappersChainedCalls: true,    
-        stringArrayWrappersParametersMaxCount: 5,
-        stringArrayWrappersType: 'function',
-        stringArrayThreshold: 1,
-        transformObjectKeys: true,
-        unicodeEscapeSequence: false
-      }
+    loader: WebpackObfuscator.loader,
+    options: {
+      compact: true,
+      identifierNamesGenerator: 'hexadecimal',
+      log: false,
+      numbersToExpressions: true,
+      renameGlobals: false,
+      selfDefending: true,
+      simplify: true,
+      splitStrings: true,
+      splitStringsChunkLength: 5,
+      stringArray: true,
+      stringArrayCallsTransform: true,
+      stringArrayEncoding: ['rc4'],
+      stringArrayIndexShift: true,
+      stringArrayRotate: true,
+      stringArrayShuffle: true,
+      stringArrayWrappersCount: 5,
+      stringArrayWrappersChainedCalls: true,
+      stringArrayWrappersParametersMaxCount: 5,
+      stringArrayWrappersType: 'function',
+      stringArrayThreshold: 1,
+      transformObjectKeys: true,
+      unicodeEscapeSequence: false
+    }
   }]
 };
 //#endregion
@@ -100,12 +126,15 @@ module.exports = {
   // 開発用ビルドでは難読化なし
   // 検証・本番用ビルドでは難読化あり
   module: {
-    rules: (process.env.NODE_ENV == 'development') ? 
-    [babelLoaderRule] :
-    [WebpackObfuscatorLoaderRule, babelLoaderRule],
+    rules: (process.env.NODE_ENV == 'development') ?
+      [babelLoaderRule] :
+      [WebpackObfuscatorLoaderRule, babelLoaderRule],
   },
   resolve: {
     extensions: ['.ts', '.js',],
+    // ビルド時のパスを解決
+    // @ → src/tsに置換 
+    alias: { '@': path.resolve(__dirname, 'src/ts'), },
   },
   plugins: [forkTsCheckerWebpackPlugin]
 };

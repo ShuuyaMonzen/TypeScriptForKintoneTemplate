@@ -16,10 +16,11 @@
       "src/ts/@types",
       "node_modules/@types"
     ],
-    // tsファイルの起点パスを@に設定
+    // tsファイルの起点パスを@に設定(ビルド時のパス解決はこの設定だけでは不十分)
+    // ビルド時のパス解決はwebpack.config.jsにて設定
     "paths": {
       "@/*": [
-          "src/ts/*"
+        "src/ts/*"
       ]
     },
     // DI用設定
@@ -28,7 +29,9 @@
   },
   "compileOnSave": true,
   "include": [
-	  "src/ts",
+    "src/ts",
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

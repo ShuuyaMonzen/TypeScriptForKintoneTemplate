@@ -1,5 +1,5 @@
 import { injectable } from 'inversify';
-import IKintoneEnviroment from './interfaceKintoneEnviroment';
+import IKintoneEnviroment from '@/config/interfaceKintoneEnviroment';
 
 @injectable()
 export default class kintoneEnviromentDevelopment implements IKintoneEnviroment {
