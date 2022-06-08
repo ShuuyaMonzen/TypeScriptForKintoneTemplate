@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
+    // ForkTsCheckerWebpackPluginにて使用のため出力なし
+    "noEmit": true,
+    // 基点となるパス
     "baseUrl": "./",
     // モジュールの参照先解決の指定
     "moduleResolution": "node",
-    "module": "commonjs",
+    "module": "es2015",
     // import 時にファイルの大文字小文字を区別する
     "forceConsistentCasingInFileNames": true,
     // ソースマップを有効化
     "sourceMap": true,
-    "target": "es5",
     // 厳密モードとして設定
     "strict": true,
     // 型参照先の設定
     "typeRoots": [
       "src/ts/@types",
-      "node_modules/@types"
+      "node_modules",
     ],
     // tsファイルの起点パスを@に設定(ビルド時のパス解決はこの設定だけでは不十分)
     // ビルド時のパス解決はwebpack.config.jsにて設定
@@ -29,9 +31,10 @@
   },
   "compileOnSave": true,
   "include": [
-    "src/ts",
+    "src/ts"
   ],
   "exclude": [
+    "dist",
     "node_modules"
   ]
 }

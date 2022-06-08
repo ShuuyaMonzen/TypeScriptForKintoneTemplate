@@ -3,10 +3,12 @@ import IKintoneEnviroment from '@/config/interfaceKintoneEnviroment';
 
 @injectable()
 export default class kintoneEnviromentProduction implements IKintoneEnviroment {
-    public constructor(){
-        this.sampleAppId = 400;
-        this.sampleApiToken = "ccc";
-    }
-    sampleApiToken: string;
-    sampleAppId: number;
+  public constructor() {
+    this.baseUrl = "https://{subdomain}.cybozu.com/";
+    this.sampleAppId = 400;
+    this.sampleApiToken = "ccc";
+  }
+  baseUrl: string;
+  sampleApiToken: string;
+  sampleAppId: number;
 }
