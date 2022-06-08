@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "コメント(buildDev) : 開発用継続ビルド": "",
+    "コメント(buildDevWatch) : 開発用継続ビルド": "",
     "buildDevWatch": "cross-env NODE_ENV=\"development\" APP_ENV=\"development\" webpack --watch",
     "コメント(buildDev) : 開発用ビルド": "",
     "buildDev": "cross-env NODE_ENV=\"development\" APP_ENV=\"development\" webpack",
@@ -29,8 +29,6 @@
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-typescript": "^7.16.7",
     "@kintone/dts-gen": "^6.0.0",
-    "@types/jquery": "^3.5.14",
-    "@types/moment": "^2.13.0",
     "babel-loader": "^8.2.5",
     "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "cross-env": "^7.0.3",

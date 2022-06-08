@@ -16,7 +16,7 @@
     // 型参照先の設定
     "typeRoots": [
       "src/ts/@types",
-      "node_modules",
+      "node_modules"
     ],
     // tsファイルの起点パスを@に設定(ビルド時のパス解決はこの設定だけでは不十分)
     // ビルド時のパス解決はwebpack.config.jsにて設定
@@ -27,14 +27,11 @@
     },
     // DI用設定
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    // Skip type checking all .d.ts files.
+    "skipLibCheck": true
   },
   "compileOnSave": true,
-  "include": [
-    "src/ts"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "include": ["src/ts"],
+  "exclude": ["dist", "node_modules"]
 }
