@@ -6,8 +6,6 @@ const WebpackObfuscator = require('webpack-obfuscator');
 // ts型・構文チェックモジュール
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-const KiloByteUnit = 1000;
-
 //#region バンドル対象を取得する
 // ビルド対象のsrc/ts/entries配下のtsファイル名を取得する
 const entries = {};

@@ -1,8 +1,8 @@
-/// <reference path="../../../node_modules/kypes/namespaces/index.ts" />
 import IKintoneEnviroment from '@/config/interfaceKintoneEnviroment';
 import container from '@/diContainer/inversify.config';
 import { DiTypes } from '@/diContainer/inversify.types';
 import { KintoneRestAPIClient } from "@kintone/rest-api-client";
+import "kypes";
 
 class appConfig {
   private kintoneEnviroment: IKintoneEnviroment;

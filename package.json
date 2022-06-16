@@ -36,7 +36,7 @@
     "glob": "^8.0.2",
     "inversify": "^6.0.1",
     "javascript-obfuscator": "^4.0.0",
-    "kypes": "github:shintaroNagata/kypes",
+    "kypes": "github:ShuuyaMonzen/kypes",
     "reflect-metadata": "^0.1.13",
     "terser-webpack-plugin": "^5.3.1",
     "typescript": "^4.6.4",

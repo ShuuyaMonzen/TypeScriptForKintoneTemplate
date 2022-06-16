@@ -1,6 +1,7 @@
 import container from '@/diContainer/inversify.config';
 import { DiTypes } from '@/diContainer/inversify.types';
 import IKintoneEnviroment from '@/config/interfaceKintoneEnviroment';
+import "kypes";
 
 class appConfig {
   private kintoneEnviroment: IKintoneEnviroment;
